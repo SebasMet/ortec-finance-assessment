@@ -3,7 +3,7 @@
   
    @for (contact of contacts(); track contact.id) {
      <div class="contact-item">
-       {{ contact.name }} - {{ contact.phone }}
+       {{ contact.name }} - {{ contact.phone }} - {{ contact.joke }}
        <button (click)="deleteContact(contact.id)">Delete</button>
      </div>
    } @empty {
