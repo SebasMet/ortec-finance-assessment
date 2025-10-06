@@ -15,4 +15,12 @@ export class ContactList {
   public deleteContact(id: string) {
     this.contactService.deleteContact(id);
   }
+
+  public isFibonacci(n: number): boolean {
+    const isPerfectSquare = (x: number): boolean => {
+      const s = Math.sqrt(x);
+      return s === Math.floor(s);
+    };
+    return isPerfectSquare(5 * n * n + 4) || isPerfectSquare(5 * n * n - 4);
+  }
 }
