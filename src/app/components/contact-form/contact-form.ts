@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ContactService, Contact } from '../../services/contact';
+import { ContactService} from '../../services/contact';
 
 @Component({
   selector: 'app-contact-form',
@@ -23,11 +23,10 @@ export class ContactForm {
       const formValue = this.contactForm.value;
 
       if (formValue.name && formValue.phone) {
-        const contact: Contact = {
+        this.contactService.addContact({
           name: formValue.name,
           phone: formValue.phone
-        };
-        this.contactService.addContact(contact);
+        });
         this.contactForm.reset();
       }
     }

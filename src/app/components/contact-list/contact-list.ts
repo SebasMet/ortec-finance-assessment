@@ -10,6 +10,9 @@ import { ContactService } from '../../services/contact';
 })
 export class ContactList {
   private contactService = inject(ContactService);
-  
   protected contacts = this.contactService.contacts;
+
+  public deleteContact(id: string) {
+    this.contactService.deleteContact(id);
+  }
 }
