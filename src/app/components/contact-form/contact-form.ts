@@ -27,7 +27,7 @@ export class ContactForm {
           name: formValue.name,
           phone: formValue.phone
         });
-        this.contactForm.reset();
+        this.contactForm.reset({ name: '', phone: '' });
       }
     }
   }
