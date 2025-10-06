@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ContactService, Contact } from '../../services/contact';
 
 @Component({
   selector: 'app-contact-form',
@@ -9,18 +10,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './contact-form.css'
 })
 export class ContactForm {
-  public contactForm: FormGroup;
+  private fb = inject(FormBuilder);
+  private contactService = inject(ContactService);
 
-  constructor(private fb: FormBuilder) {
-    this.contactForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(2)]],
-      phone: ['', [Validators.required, Validators.minLength(10)]],
-    });
-  }
+  public contactForm = this.fb.group({
+    name: ['', [Validators.required, Validators.minLength(2)]],
+    phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]+$')]]
+  });
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log(this.contactForm.value);
+      const formValue = this.contactForm.value;
+
+      if (formValue.name && formValue.phone) {
+        const contact: Contact = {
+          name: formValue.name,
+          phone: formValue.phone
+        };
+        this.contactService.addContact(contact);
+        this.contactForm.reset();
+      }
     }
   }
 }

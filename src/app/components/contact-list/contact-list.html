@@ -1,0 +1,13 @@
+<div class="contact-list">
+  <h3>Contact List</h3>
+  
+  @for (contact of contacts(); track contact.phone) {
+    <div class="contact-item">
+      {{ contact.name }} - {{ contact.phone }}
+    </div>
+  } @empty {
+    <div class="no-contacts">
+      No contacts added yet
+    </div>
+  }
+</div>
