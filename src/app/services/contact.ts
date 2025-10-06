@@ -16,7 +16,7 @@ export class ContactService {
 
   readonly contacts = signal<Contact[]>([]);
 
-  addContact(contact: Omit<Contact, 'id' | 'joke'>) {
+  public addContact(contact: Omit<Contact, 'id' | 'joke'>) {
     const newContact: Contact = {
       ...contact,
       id: crypto.randomUUID(),
@@ -35,15 +35,15 @@ export class ContactService {
       });
   }
 
-  private updateContactJoke(id: string, joke: string) {
+  public deleteContact(id: string) {
     this.contacts.update(contacts =>
-      contacts.map(contact => contact.id === id ? { ...contact, joke } : contact)
+      contacts.filter(contact => contact.id !== id)
     );
   }
 
-  deleteContact(id: string) {
+  private updateContactJoke(id: string, joke: string) {
     this.contacts.update(contacts =>
-      contacts.filter(contact => contact.id !== id)
+      contacts.map(contact => contact.id === id ? { ...contact, joke } : contact)
     );
   }
 }

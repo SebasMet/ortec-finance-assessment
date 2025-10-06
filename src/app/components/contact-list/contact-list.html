@@ -4,7 +4,7 @@
    @for (contact of contacts(); track contact.id) {
      <div class="contact-item" [class.fibonacci]="isFibonacci($index)">
        {{ contact.name }} - {{ contact.phone }} - {{ contact.joke }}
-       <button (click)="deleteContact(contact.id)">Delete</button>
+        <button (click)="deleteContact(contact.id)"><i class="fas fa-times"></i></button>
      </div>
    } @empty {
      <div class="no-contacts">

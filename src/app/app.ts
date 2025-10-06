@@ -10,5 +10,4 @@ import { ContactList } from './components/contact-list/contact-list';
 })
 export class App {
   protected title = 'ortec-finance-assessment';
-
 }

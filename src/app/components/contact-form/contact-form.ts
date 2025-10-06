@@ -15,10 +15,10 @@ export class ContactForm {
 
   public contactForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    phone: ['', [Validators.required, Validators.minLength(10), Validators.pattern('^[0-9]+$')]]
+    phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
   });
 
-  onSubmit() {
+  public onSubmit() {
     if (this.contactForm.valid) {
       const formValue = this.contactForm.value;
 
